@@ -12,9 +12,12 @@ import {PostController, UserController} from './controllers/index.js';
 
 import { postCreateValidation } from "./validations/post.js";
 
+//"mongodb+srv://user:wwwwww@cluster0.m45kuw9.mongodb.net/blog?retryWrites=true&w=majority"
+
+
 mongoose
   .connect(
-    "mongodb+srv://user:wwwwww@cluster0.m45kuw9.mongodb.net/blog?retryWrites=true&w=majority"
+    process.env.MONGODB_URI
   )
   .then(() => {
     console.log("DB ok");
@@ -63,7 +66,7 @@ app.post('/posts', checkAuth, postCreateValidation, handleValidationErrors, Post
 app.delete('/posts/:id', checkAuth, PostController.remove);
 app.patch('/posts/:id', checkAuth, postCreateValidation,PostController.update);
 
-app.listen(4444, (err) => {
+app.listen(process.env.PORT || 4444, (err) => {
   if (err) {
     return console.log(err);
   }
