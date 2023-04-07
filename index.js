@@ -1,3 +1,6 @@
+
+// require('dotenv').config();
+
 import express from "express";
 import multer from "multer";
 import cors from 'cors';
@@ -12,12 +15,12 @@ import {PostController, UserController} from './controllers/index.js';
 
 import { postCreateValidation } from "./validations/post.js";
 
-//"mongodb+srv://user:wwwwww@cluster0.m45kuw9.mongodb.net/blog?retryWrites=true&w=majority"
+// const MONGODB_URI = "mongodb+srv://user:wwwwww@cluster0.m45kuw9.mongodb.net/blog?retryWrites=true&w=majority"
 
 
 mongoose
   .connect(
-    process.env.MONGODB_URI
+    "mongodb+srv://user:wwwwww@cluster0.m45kuw9.mongodb.net/blog?retryWrites=true&w=majority"
   )
   .then(() => {
     console.log("DB ok");
